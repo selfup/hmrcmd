@@ -1,3 +1,3 @@
 # ICOM CMD GO
 
-WebServer in Go that talks to ICOM radios via RESTful API calls.
+RESTful WebServer in Go that talks to ICOM radios via serial port calls.
