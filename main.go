@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/hex"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -70,8 +69,6 @@ func grabPortAndCommand(
 	}
 
 	decoder := json.NewDecoder(r.Body)
-
-	fmt.Println(r.Body)
 
 	var incoming struct {
 		SerialPort  string
