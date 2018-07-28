@@ -35,8 +35,10 @@ func parseCmdAndWriteToPort(serialPort string, icomCmd string) {
 		log.Fatalf("serial.Open: %v", err)
 	}
 
-	time.Sleep(200 * time.Millisecond)
+	// sleep 50ms for radio to accept payload
+	time.Sleep(50 * time.Millisecond)
 
+	// have port close once code block is done (aka last sleep)
 	defer port.Close()
 
 	_, err = port.Write(data)
@@ -44,5 +46,6 @@ func parseCmdAndWriteToPort(serialPort string, icomCmd string) {
 		log.Fatalf("port.Write: %v", err)
 	}
 
-	time.Sleep(200 * time.Millisecond)
+	// sleep 50ms prior to closing port for radio to run cmd
+	time.Sleep(50 * time.Millisecond)
 }
