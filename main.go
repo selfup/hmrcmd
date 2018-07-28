@@ -8,10 +8,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gobuffalo/packr"
 	"github.com/jacobsa/go-serial/serial"
 )
 
 func main() {
+	box := packr.NewBox("./build")
+
+	http.Handle("/", http.FileServer(box))
 	http.HandleFunc("/api/v1/icom-cmd", icomGrabPortAndCommand)
 	http.ListenAndServe(":8792", nil)
 }
