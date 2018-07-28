@@ -12,11 +12,11 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", grabPortAndCommand)
+	http.HandleFunc("/api/v1/icom-cmd", icomGrabPortAndCommand)
 	http.ListenAndServe(":8792", nil)
 }
 
-func parseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
+func icomParseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
 	icomCmds := strings.Split(icomCmd, " ")
 	byteCmd := strings.Join(icomCmds, "")
 
@@ -59,7 +59,7 @@ func parseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
 	return true
 }
 
-func grabPortAndCommand(
+func icomGrabPortAndCommand(
 	w http.ResponseWriter,
 	r *http.Request,
 ) {
@@ -81,7 +81,7 @@ func grabPortAndCommand(
 		return
 	}
 
-	success := parseCmdAndWriteToPort(
+	success := icomParseCmdAndWriteToPort(
 		incoming.SerialPort,
 		incoming.IcomCommand,
 	)

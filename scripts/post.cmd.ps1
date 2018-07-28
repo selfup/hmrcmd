@@ -5,7 +5,7 @@ $params = @{
 
 Invoke-WebRequest `
   -UseBasicParsing `
-  -Uri http://localhost:8792 `
+  -Uri http://localhost:8792/api/v1/icom-cmd `
   -Method POST `
   -Body ($params|ConvertTo-Json) `
   -ContentType "application/json"

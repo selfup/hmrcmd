@@ -1,6 +1,16 @@
-# ICOM CMD GO
+# HMRCMD
 
-RESTful WebServer in Go that talks to ICOM radios via serial port calls.
+Ham Radio Command Center :pray: 
+
+RESTful WebServer in Go that talks to radios via serial port calls.
+
+Frontend comming soon!
+
+### Supported Target
+
+Currently ICOM is the main development focus.
+
+Kenwood is potentially next on the list!
 
 ### Executable
 
@@ -8,10 +18,10 @@ No release yet. Will post a release soon :tada:
 
 ### API
 
-1. Root Endpoint
+1. ICOM Endpoint
 
     * Url: `http://localhost:8792`
-    * Route: `/`
+    * Route: `/api/v1/icom-cmd`
     * Method: `POST`
     * Body (JSON): `{SerialPort: '', IcomCommand: ''}`
     * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD'}`
