@@ -8,7 +8,7 @@ No release yet. Will post a release soon :tada:
 
 ### Development
 
-1. [Golang](https://golang.org/doc/install)
+1. [Golang Installation Page](https://golang.org/doc/install)
 2. `github.com/jacobsa/go-serial/serial`
 
 Install Go.
