@@ -6,6 +6,16 @@ RESTful WebServer in Go that talks to ICOM radios via serial port calls.
 
 No release yet. Will post a release soon :tada:
 
+### API
+
+1. Root Endpoint
+
+    * Url: `http://localhost:8792`
+    * Route: `/`
+    * Method: `POST`
+    * Body (JSON): `{SerialPort: '', IcomCommand: ''}`
+    * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD'}`
+
 ### Development
 
 1. [Golang Installation Page](https://golang.org/doc/install)
@@ -19,21 +29,11 @@ Install the library: `go get github.com/jacobsa/go-serial/serial`
 
 `go run main.go`
 
-### API
-
-1. Root Endpoint
-
-    * Url: `http://localhost:8792`
-    * Route: `/`
-    * Method: `POST`
-    * Body (JSON): `{SerialPort: '', IcomCommand: ''}`
-    * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD'}`
-
-### Development
+### Development Guidelines
 
 Please read the `CODE_OF_CONDUCT.md` file :pray:
 
-I use [VSCode](https://code.visualstudio.com/) with two extensions for this project:
+I use [VSCode](https://code.visualstudio.com/) with three extensions for this project:
 
 1. [Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
 1. [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
