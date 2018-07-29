@@ -8,11 +8,11 @@ RESTful WebServer in Go that talks to radios via serial port calls.
 
 Frontend is in [Hyperapp](https://github.com/hyperapp/hyperapp)
 
-### Supported Target
+### Supported Radios
 
 Currently ICOM is the main development focus.
 
-Kenwood is potentially next on the list!
+However you can input any HEX you like, so technically anything!
 
 ### Releases/Executables
 
