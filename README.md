@@ -24,10 +24,6 @@ Please check the releases page: https://github.com/selfup/hmrcmd/releases
 
 ### API
 
-Baudrate in the server is set to 9600 for the serialport calls.
-
-It's the standard and is more than enough for sending small byte arrays :smile:
-
 1. ICOM Endpoint
 
     * Url: `http://localhost:8792`
@@ -35,6 +31,10 @@ It's the standard and is more than enough for sending small byte arrays :smile:
     * Method: `POST`
     * Body (JSON): `{SerialPort: '', IcomCommand: ''}`
     * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD'}`
+
+_Baudrate in the server is set to 9600 for the serialport calls._
+
+_It's the standard and is more than enough for sending small byte arrays_ :smile:
 
 ### Development
 
@@ -44,7 +44,9 @@ It's the standard and is more than enough for sending small byte arrays :smile:
 1. [packr](https://github.com/gobuffalo/packr)
 
 Install go-serial: `go get github.com/jacobsa/go-serial/serial`
+
 Install packr: `go get -u github.com/gobuffalo/packr/...`
+
 Install JS deps: `npm i`
 
 ### Virtual Ports and Observing Calls Without Hardware
