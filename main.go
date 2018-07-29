@@ -3,17 +3,27 @@ package main
 import (
 	"encoding/hex"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
 	"time"
 
+	"github.com/gobuffalo/packr"
 	"github.com/jacobsa/go-serial/serial"
 )
 
 func main() {
+	box := packr.NewBox("build")
+
+	http.Handle("/", http.FileServer(box))
 	http.HandleFunc("/api/v1/icom-cmd", icomGrabPortAndCommand)
+
+	fmt.Println("HMRCMD is now running on: http://localhost:8792")
+
 	http.ListenAndServe(":8792", nil)
+
+	log.Fatal("Failed to run HMRCMD")
 }
 
 func icomParseCmdAndWriteToPort(serialPort string, icomCmd string) bool {

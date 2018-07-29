@@ -30,6 +30,7 @@ No release yet. Will post a release soon :tada:
 
 1. [Golang Installation Page](https://golang.org/doc/install)
 2. [go-serial](https://github.com/jacobsa/go-serial/serial)
+3. [packr](https://github.com/gobuffalo/packr)
 
 Install Go.
 

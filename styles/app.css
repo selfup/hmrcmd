@@ -1,0 +1,114 @@
+body {
+  font-family: sans-serif;
+  background-color: lightgrey;
+  font-weight: 200;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  padding: 1em;
+}
+
+.main {
+  text-align: center;
+  margin: auto;
+}
+
+.container {  
+  vertical-align: top;
+  display: inline-flex;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.sidebar {
+  background-color: white;
+  text-align: center;
+
+  width: 20%;
+  min-height: 94vh;
+  max-height: 9000px;
+  padding-top: 1em;
+  
+  border: solid 2px lightgrey;
+}
+
+.btn {
+  padding: 1em;
+  display: block;
+  border: none;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1em;
+}
+
+.content {
+  text-align: center;
+  justify-content: center;
+  background-color: white;
+  display: inline-flex;
+  
+  padding: 1em;
+  width: 79%;
+  min-height: 94vh;
+  max-height: 9000px;
+  
+  border: solid 2px lightgrey;
+}
+
+.add-radio {
+  width: 200px;
+  background-color: lightblue;
+}
+
+.import {
+  width: 200px;
+  background-color: plum;
+}
+
+.export {
+  width: 200px;
+  background-color: palevioletred;
+}
+
+.save-radio {
+  width: 200px;
+  background-color: lightseagreen;
+}
+
+.config-option {
+  width: 300px;
+}
+
+.home-btn {
+  background-color: lightgreen;
+}
+
+.config-btn {
+  background-color: lightsalmon;
+}
+
+.radios-btn {
+  background-color: lightseagreen;
+}
+
+.save-radio-btn {
+  background-color: lightseagreen;
+}
+
+.fire-cmd {
+  background-color: #f74f5d;
+}
+
+.radio {
+  padding: 1em;
+  background-color: aliceblue;
+  width: 300px;
+
+  -webkit-box-shadow: 0 8px 6px -6px grey;
+	-moz-box-shadow: 0 8px 6px -6px grey;
+	box-shadow: 0px 8px 8px -6px grey;
+}
