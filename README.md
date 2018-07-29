@@ -49,6 +49,60 @@ Install packr: `go get -u github.com/gobuffalo/packr/...`
 
 Install JS deps: `npm i`
 
+### Run the frontend
+
+`npm start`
+
+**Caveats**
+
+Cannot make API calls on the development frontend.
+
+Can make API calls when running the go server but you are locked-in until you rebuild new frontend assets.
+
+Thankfully all data is stored in localStorage which ensures that UX/UI can be properly developed.
+
+### Run the backend
+
+To make calls to the radio while using the frontend:
+
+`go run main.go`
+
+To test API calls without using the frontend there are scripts!
+
+**Windows**
+
+`./scripts/post.cmd.ps1`
+
+**MacOS / Linux**
+
+`./scripts/post.cmd.sh`
+
+**Caveats**
+
+Cannot update frontend while testing API calls. Frontend must be compiled via `packr` to ensure that the go server serves the files correctly which ensures that [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) is not a problem.
+
+### Compile into a binary release
+
+**Windows**
+
+`./scripts/release.ps1`
+
+**MacOS / Linux**
+
+`./scripts/release.sh`
+
+### Development Guidelines
+
+Please read the `CODE_OF_CONDUCT.md` file :pray:
+
+I use [VSCode](https://code.visualstudio.com/) with three extensions for this project:
+
+1. [Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
+1. [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+1. [Go Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go)
+
+Please fork the project and make a Pull Request (PR) to contribute!
+
 ### Virtual Ports and Observing Calls Without Hardware
 
 **Windows**
@@ -104,59 +158,9 @@ It seems you have to make two calls to see it... :thinking:
 
 Do not be discouraged! :smile:
 
-### Run the frontend
+Example screenshot:
 
-`npm start`
-
-**Caveats**
-
-Cannot make API calls on the development frontend.
-
-Can make API calls when running the go server but you are locked-in until you rebuild new frontend assets.
-
-Thankfully all data is stored in localStorage which ensures that UX/UI can be properly developed.
-
-### Run the backend
-
-To make calls to the radio while using the frontend:
-
-`go run main.go`
-
-To test API calls without using the frontend there are scripts!
-
-**Windows**
-
-`./scripts/post.cmd.ps1`
-
-**MacOS / Linux**
-
-`./scripts/post.cmd.sh`
-
-**Caveats**
-
-Cannot update frontend while testing API calls. Frontend must be compiled via `packr` to ensure that the go server serves the files correctly which ensures that [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) is not a problem.
-
-### Compile into a binary release
-
-**Windows**
-
-`./scripts/release.ps1`
-
-**MacOS / Linux**
-
-`./scripts/release.sh`
-
-### Development Guidelines
-
-Please read the `CODE_OF_CONDUCT.md` file :pray:
-
-I use [VSCode](https://code.visualstudio.com/) with three extensions for this project:
-
-1. [Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
-1. [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
-1. [Go Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go)
-
-Please fork the project and make a Pull Request (PR) to contribute!
+<img width="1121" alt="screen shot 2018-07-29 at 10 17 32 am" src="https://user-images.githubusercontent.com/9837366/43367815-a7c21806-9318-11e8-8b12-da22f85b9118.png">
 
 ### Reading Materials
 
