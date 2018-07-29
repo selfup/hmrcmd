@@ -36,7 +36,7 @@ _Baudrate in the server is set to 9600 for the serialport calls._
 
 _It's the standard and is more than enough for sending small byte arrays_ :smile:
 
-### Development
+### Deps
 
 1. [Golang](https://golang.org)
 1. [Node](https://nodejs.org)
