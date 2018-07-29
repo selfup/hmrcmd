@@ -1,3 +1,10 @@
 export default {
-  num: 0,
+  loacalStorage: '',
+  radios: [],
+  newRadioOptions: {},
+  newConfig: false,
+  cmd: {
+    SerialPort: 'COM3',
+    IcomCommand: 'FE FE FD',
+  },
 };

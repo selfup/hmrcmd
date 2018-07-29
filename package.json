@@ -5,14 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "rm -rf build && webpack -p --config webpack.config.prod.js",
-    "wipe": "rm -rf .git && git init && git add . && git commit -m 'initial commit'",
-    "deploy": "./scripts/gh_pages.sh",
+    "build": "webpack -p --config webpack.config.prod.js",
     "test": "jest --coverage --no-cache"
   },
   "author": "Regis Boudinot (selfup)",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "hyperapp": "^1.2.6",
     "hyperapp-redux-devtools": "^1.1.6",
     "lspi": "^3.0.2"

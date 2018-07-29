@@ -12,7 +12,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     title: 'Hyperapp One',
     template: './src/index.html',
-    filename: path.join(__dirname, './index.html'),
+    filename: path.join(__dirname, './build/index.html'),
   }),
   new ScriptExtHtmlWebpackPlugin({
     defaultAttribute: 'defer',
