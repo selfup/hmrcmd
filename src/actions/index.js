@@ -1,31 +1,54 @@
 import axios from 'axios';
 import lspi from 'lspi';
-import radio from './../objects/radio';
 
-const ICOM_CMD_API = process.env.NODE_END !== 'production'
-  ? 'http://localhost:8792/api/v1/icom-cmd'
-  : '/api/v1/icom-cmd';
+const ICOM_CMD_API = '/api/v1/icom-cmd';
 
 export default {
+  syncFromJSON: radios => () => {
+    if (typeof json === 'string') {
+      return {
+        radios: JSON.parse(radios),
+      };
+    }
+
+    return {
+      radios,
+    };
+  },
+
+  updateContentType: contentType => () => ({
+    contentType,
+  }),
+
   newRadio: () => ({ newConfig }) => ({
     newConfig: !newConfig,
   }),
 
+  updateOptions: ({ target: { id, value } }) => ({ newRadioOptions }) => {
+    const options = Object.assign({}, newRadioOptions);
+
+    options[id] = value.trim();
+
+    return {
+      newRadioOptions: options,
+    };
+  },
+
   addRadio: () => ({ radios, newRadioOptions }) => {
     const {
-      name,
       port,
-      commands,
+      cmdname,
+      cmdhex,
     } = newRadioOptions;
 
-    const newRadio = radio(
-      name,
+    const commands = [{
       port,
-      commands,
-    );
+      name: cmdname,
+      hex: cmdhex,
+    }];
 
     const newRadios = [
-      newRadio,
+      Object.assign({}, { commands }, newRadioOptions),
       ...radios,
     ];
 
@@ -33,6 +56,7 @@ export default {
 
     return {
       radios: newRadios,
+      newConfig: false,
       newRadioOptions: {},
     };
   },
@@ -42,12 +66,7 @@ export default {
     commandSuccess: true,
   }),
 
-  postIcomCmd: () => ({ cmd }, { success }) => {
-    const {
-      SerialPort,
-      IcomCommand,
-    } = cmd;
-
+  postIcomCmd: ({ SerialPort, IcomCommand }) => (state, { success }) => {
     axios.post(ICOM_CMD_API, { SerialPort, IcomCommand })
       .then(() => {
         success();

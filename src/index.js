@@ -1,3 +1,4 @@
+import lspi from 'lspi';
 import { app } from 'hyperapp';
 
 import actions from './actions';
@@ -11,11 +12,29 @@ const appArgs = [
   document.getElementById('app'),
 ];
 
+function onMount(main) {
+  const {
+    syncFromJSON,
+  } = main;
+
+  const radios = lspi.get('radios');
+
+  if (radios && radios.length) {
+    syncFromJSON(radios);
+  }
+}
+
+let main;
+
 if (process.env.NODE_ENV !== 'production') {
   import('hyperapp-redux-devtools')
     .then((devtools) => {
-      devtools(app)(...appArgs);
+      main = devtools(app)(...appArgs);
+
+      onMount(main);
     });
 } else {
-  app(...appArgs);
+  main = app(...appArgs);
+
+  onMount(main);
 }

@@ -98,3 +98,17 @@ input {
 .save-radio-btn {
   background-color: lightseagreen;
 }
+
+.fire-cmd {
+  background-color: #f74f5d;
+}
+
+.radio {
+  padding: 1em;
+  background-color: aliceblue;
+  width: 300px;
+
+  -webkit-box-shadow: 0 8px 6px -6px grey;
+	-moz-box-shadow: 0 8px 6px -6px grey;
+	box-shadow: 0px 8px 8px -6px grey;
+}

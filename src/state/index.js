@@ -1,10 +1,13 @@
+import { HOME } from './../constants';
+
 export default {
   loacalStorage: '',
   radios: [],
   newRadioOptions: {},
   newConfig: false,
+  contentType: HOME,
   cmd: {
-    SerialPort: 'COM3',
-    IcomCommand: 'FE FE FD',
+    SerialPort: '',
+    IcomCommand: '',
   },
 };
