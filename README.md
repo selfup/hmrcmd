@@ -156,7 +156,9 @@ Now you will want to pick on of the tty pairs and cat the hexdump in another ter
 
 `cat /dev/ttys007 | hexdump`
 
-Now when you make an API call, you will see the hexdump!
+**Now when you make an API call make sure to use the other port in the pair.**
+
+Once you send the message to 008, you will see the hexdump from 007!
 
 It seems you have to make two calls to see it... :thinking:
 
