@@ -2,8 +2,9 @@
 
 Ham Radio Command Center :pray:
 
-<img width="1050" alt="screen shot 2018-07-29 at 10 24 00 am" src="https://user-images.githubusercontent.com/9837366/43367874-988dde82-9319-11e8-8961-de5e2e8a3635.png">
-<img width="899" alt="screen shot 2018-07-29 at 10 27 03 am" src="https://user-images.githubusercontent.com/9837366/43367896-fe542668-9319-11e8-9082-9d3b0a95d485.png">
+<img width="500" alt="screen shot 2018-07-29 at 10 33 32 am" src="https://user-images.githubusercontent.com/9837366/43367954-e27f47a0-931a-11e8-8eca-bbb7f2636d83.png">
+<img width="500" alt="screen shot 2018-07-29 at 10 24 00 am" src="https://user-images.githubusercontent.com/9837366/43367874-988dde82-9319-11e8-8961-de5e2e8a3635.png">
+<img width="500" alt="screen shot 2018-07-29 at 10 27 03 am" src="https://user-images.githubusercontent.com/9837366/43367896-fe542668-9319-11e8-9082-9d3b0a95d485.png">
 
 
 Portable executable webserver/client that can be run on Windows/MacOS/Linux.
