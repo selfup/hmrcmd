@@ -1,10 +1,12 @@
 # HMRCMD
 
-Ham Radio Command Center :pray: 
+Ham Radio Command Center :pray:
+
+Portable executable webserver/client that can be run on Windows/MacOS/Linux.
 
 RESTful WebServer in Go that talks to radios via serial port calls.
 
-Frontend comming soon!
+Frontend is in [Hyperapp](https://github.com/hyperapp/hyperapp)
 
 ### Supported Target
 
@@ -12,11 +14,19 @@ Currently ICOM is the main development focus.
 
 Kenwood is potentially next on the list!
 
-### Executable
+### Releases/Executables
 
-No release yet. Will post a release soon :tada:
+Currently only uploading Windows releases.
+
+MacOS/Linux are next on the list!
+
+Please check the releases page: https://github.com/selfup/hmrcmd/releases
 
 ### API
+
+Baudrate in the server is set to 9600 for the serialport calls.
+
+It's the standard and is more than enough for sending small byte arrays :smile:
 
 1. ICOM Endpoint
 
@@ -28,17 +38,111 @@ No release yet. Will post a release soon :tada:
 
 ### Development
 
-1. [Golang Installation Page](https://golang.org/doc/install)
-2. [go-serial](https://github.com/jacobsa/go-serial/serial)
-3. [packr](https://github.com/gobuffalo/packr)
+1. [Golang](https://golang.org)
+1. [Node](https://nodejs.org)
+1. [go-serial](https://github.com/jacobsa/go-serial/serial)
+1. [packr](https://github.com/gobuffalo/packr)
 
-Install Go.
+Install go-serial: `go get github.com/jacobsa/go-serial/serial`
+Install packr: `go get -u github.com/gobuffalo/packr/...`
+Install JS deps: `npm i`
 
-Install the library: `go get github.com/jacobsa/go-serial/serial`
+### Virtual Ports and Observing Calls Without Hardware
 
-### Run the server
+**Windows**
+
+1. [RealTerm](https://sourceforge.net/projects/realterm/)
+1. [com0com](https://sourceforge.net/projects/com0com/)
+
+**Observing commands on Windows**
+
+Create a virtual port pair with com0com and then connect to one of the port pairs with RealTerm.
+
+Set baudrate to 9600 and on the display tab set to either hex [with space] or binary (up to you)
+
+***
+
+**MacOS/Linux**
+
+1. [socat](http://www.dest-unreach.org/socat/doc/socat.html)
+1. [screen](https://www.gnu.org/software/screen)
+
+**MacOS**
+
+Install socat `brew install socat` or install the binary yourself.
+
+**Linux (Ubuntu)**
+
+Install socat `sudo apt install socat` or install the binary yourself.
+
+**Observing commands on MacOS/Linux**
+
+_Ok this gets interesting_
+
+In a terminal/pane/tab can either run:
+
+1. `socat -d -d pty,raw,echo=0 pty,raw,echo=0`
+1. `./scripts/virtual.pair.sh`
+
+You will see output like so
+
+```
+2018/07/29 09:43:54 socat[20004] N PTY is /dev/ttys007
+2018/07/29 09:43:54 socat[20004] N PTY is /dev/ttys008
+2018/07/29 09:43:54 socat[20004] N starting data transfer loop with FDs [5,5] and [7,7]
+```
+
+Now you will want to pick on of the tty pairs and cat the hexdump in another terminal/pane/tab:
+
+`cat /dev/ttys007 | hexdump`
+
+Now when you make an API call, you will see the hexdump!
+
+It seems you have to make two calls to see it... :thinking:
+
+Do not be discouraged! :smile:
+
+### Run the frontend
+
+`npm start`
+
+**Caveats**
+
+Cannot make API calls on the development frontend.
+
+Can make API calls when running the go server but you are locked-in until you rebuild new frontend assets.
+
+Thankfully all data is stored in localStorage which ensures that UX/UI can be properly developed.
+
+### Run the backend
+
+To make calls to the radio while using the frontend:
 
 `go run main.go`
+
+To test API calls without using the frontend there are scripts!
+
+**Windows**
+
+`./scripts/post.cmd.ps1`
+
+**MacOS / Linux**
+
+`./scripts/post.cmd.sh`
+
+**Caveats**
+
+Cannot update frontend while testing API calls. Frontend must be compiled via `packr` to ensure that the go server serves the files correctly which ensures that [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) is not a problem.
+
+### Compile into a binary release
+
+**Windows**
+
+`./scripts/release.ps1`
+
+**MacOS / Linux**
+
+`./scripts/release.sh`
 
 ### Development Guidelines
 
