@@ -8,9 +8,10 @@ then
   rm -rf releases
 fi
 
-npm run build && packr clean && packr \
-  && GOOS=darwin GOARCH=amd64 go build -o ./releases/darwin-hmrcmd main.go \
-  && GOOS=linux GOARCH=amd64 go build -o ./releases/linux-hmrcmd main.go \
-  && GOOS=linux GOARCH=arm GOARM=5 go build -o ./releases/rpi-hmrcmd main.go \
-  && GOOS=windows GOARCH=386 go build -o ./releases/hmrcmd.exe main.go \
+npm run build \
+  && mkdir releases \
+  && GOOS=darwin GOARCH=amd64 packr build && mv ./hmrcmd ./releases/darwin-hmrcmd \
+  && GOOS=linux GOARCH=amd64 packr build && mv ./hmrcmd ./releases/linux-hmrcmd \
+  && GOOS=linux GOARCH=arm GOARM=5 packr build && mv ./hmrcmd ./releases/rpi-hmrcmd \
+  && GOOS=windows GOARCH=386 packr build && mv ./hmrcmd.exe ./releases/hmrcmd.exe \
   && packr clean
