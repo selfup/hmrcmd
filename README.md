@@ -124,8 +124,8 @@ Now make sure to send the commands to the other end of the pair!
 Example:
 
 1. com0com pair: COM12 - COM13
-1. RealTerm listen to: COM3
-1. SerialPort for HEX command: COM4
+1. RealTerm listen to: COM12
+1. SerialPort for HEX command: COM13
 
 ***
 
