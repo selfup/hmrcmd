@@ -119,6 +119,14 @@ Create a virtual port pair with com0com and then connect to one of the port pair
 
 Set baudrate to 9600 and on the display tab set to either hex [with space] or binary (up to you)
 
+Now make sure to send the commands to the other end of the pair!
+
+Example:
+
+1. com0com pair: COM12 - COM13
+1. RealTerm listen to: COM3
+1. SerialPort for HEX command: COM4
+
 ***
 
 **MacOS/Linux**
