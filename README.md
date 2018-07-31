@@ -15,7 +15,7 @@ Frontend is in [Hyperapp](https://github.com/hyperapp/hyperapp)
 
 Currently ICOM is the main development focus.
 
-However you can input any HEX you like, so technically anything!
+However you can input any HEX you like, so technically anything (like sending hex to an arduino)!
 
 ### Releases/Executables
 
@@ -118,6 +118,14 @@ Please fork the project and make a Pull Request (PR) to contribute!
 Create a virtual port pair with com0com and then connect to one of the port pairs with RealTerm.
 
 Set baudrate to 9600 and on the display tab set to either hex [with space] or binary (up to you)
+
+Now make sure to send the commands to the other end of the pair!
+
+Example:
+
+1. com0com pair: COM12 - COM13
+1. RealTerm listen to: COM12
+1. SerialPort for HEX command: COM13
 
 ***
 
