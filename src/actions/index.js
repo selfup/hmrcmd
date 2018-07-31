@@ -13,6 +13,95 @@ export default {
 
     return {
       radios,
+      displayRadios: [...radios],
+    };
+  },
+
+  filterDisplayRadiosByTag: searchTerm => ({ radios }) => ({
+    displayRadios: radios.filter((radio) => {
+      const term = searchTerm.trim().toLowerCase();
+      const tag = radio.tag.toLowerCase();
+
+      return tag.includes(term);
+    }),
+  }),
+
+  filterDisplayRadiosByName: searchTerm => ({ radios }) => ({
+    displayRadios: radios.filter((radio) => {
+      const term = searchTerm.trim().toLowerCase();
+      const name = radio.name.toLowerCase();
+
+      return name.includes(term);
+    }),
+  }),
+
+  updateNewCmdName: ({ target: { value: newCmdName } }) => () => ({
+    newCmdName: newCmdName.trim(),
+  }),
+
+  updateNewCmdHex: ({ target: { value: newCmdHex } }) => () => ({
+    newCmdHex: newCmdHex.trim(),
+  }),
+
+  saveNewCmd: idx => ({
+    radios,
+    displayRadios,
+    newCmdName,
+    newCmdHex,
+  }) => {
+    const updatedDisplayRadios = displayRadios.map((displayRadio, i) => {
+      if (i === idx) {
+        const {
+          port,
+        } = displayRadio;
+
+        const newCmds = [
+          { name: newCmdName, hex: newCmdHex, port },
+          ...displayRadio.commands,
+        ];
+
+        const updatedDisplayRadio = Object.assign({}, displayRadio);
+
+        updatedDisplayRadio.addingNewCmd = false;
+        updatedDisplayRadio.commands = newCmds;
+
+        return updatedDisplayRadio;
+      }
+
+      return displayRadio;
+    });
+
+    const updatedRadio = Object.assign({}, updatedDisplayRadios[idx]);
+
+    const updatedRadios = radios.map((radio) => {
+      if (radio.name === updatedRadio.name && radio.tag === updatedRadio.tag) {
+        return updatedRadio;
+      }
+
+      return radio;
+    });
+
+    lspi.set('radios', updatedRadios);
+
+    return {
+      newCmdName,
+      newCmdHex,
+      radios: updatedRadios,
+      displayRadios: updatedDisplayRadios,
+    };
+  },
+
+  addCmd: idx => ({ displayRadios }) => {
+    const newRadioState = displayRadios.map((radio, i) => {
+      if (i === idx) {
+        return Object.assign({}, radio, { addingNewCmd: true });
+      }
+
+      return radio;
+    });
+
+    return {
+      displayRadios: newRadioState,
     };
   },
 
@@ -48,7 +137,7 @@ export default {
     }];
 
     const newRadios = [
-      Object.assign({}, { commands }, newRadioOptions),
+      Object.assign({}, { commands, addingNewCmd: false }, newRadioOptions),
       ...radios,
     ];
 
@@ -56,6 +145,7 @@ export default {
 
     return {
       radios: newRadios,
+      displayRadios: newRadios,
       newConfig: false,
       newRadioOptions: {},
     };
