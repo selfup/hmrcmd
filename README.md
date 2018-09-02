@@ -46,6 +46,8 @@ _It's the standard and is more than enough for sending small byte arrays_ :smile
 1. [go-serial](https://github.com/jacobsa/go-serial/serial)
 1. [packr](https://github.com/gobuffalo/packr)
 
+If on macOS: `go get golang.org/x/sys/unix` :thinking:
+
 Install go-serial: `go get github.com/jacobsa/go-serial/serial`
 
 Install packr: `go get -u github.com/gobuffalo/packr/...`
