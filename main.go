@@ -50,8 +50,8 @@ func icomParseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
 		return false
 	}
 
-	// sleep 50ms for radio to accept payload
-	time.Sleep(50 * time.Millisecond)
+	// sleep 100ms for radio to accept payload
+	time.Sleep(100 * time.Millisecond)
 
 	// have port close once code block is done (aka last sleep)
 	defer port.Close()
@@ -63,16 +63,13 @@ func icomParseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
 		return false
 	}
 
-	// sleep 50ms prior to closing port for radio to run cmd
-	time.Sleep(50 * time.Millisecond)
+	// sleep 100ms prior to closing port for radio to run cmd
+	time.Sleep(100 * time.Millisecond)
 
 	return true
 }
 
-func icomGrabPortAndCommand(
-	w http.ResponseWriter,
-	r *http.Request,
-) {
+func icomGrabPortAndCommand(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "this endpoint only supports POST requests", 405)
 		return
@@ -87,7 +84,7 @@ func icomGrabPortAndCommand(
 
 	err := decoder.Decode(&incoming)
 	if err != nil {
-		http.Error(w, "failed to parse incoming JSON", 500)
+		http.Error(w, "failed to parse incoming JSON", 1000)
 		return
 	}
 
@@ -97,12 +94,12 @@ func icomGrabPortAndCommand(
 	)
 
 	if !success {
-		http.Error(w, "failed to send command to radio", 500)
+		http.Error(w, "failed to send command to radio", 1000)
 	}
 
 	outgoing, err := json.Marshal(incoming)
 	if err != nil {
-		http.Error(w, "failed to stringify outgoing JSON", 500)
+		http.Error(w, "failed to stringify outgoing JSON", 1000)
 	}
 
 	w.Write(outgoing)
