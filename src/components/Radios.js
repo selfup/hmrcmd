@@ -40,6 +40,7 @@ const renderRadios = (state, actions) => {
   const {
     postIcomCmd,
     addCmd,
+    removeCmd,
   } = actions;
 
   return displayRadios.map((radio, radioIdx) => {
@@ -53,7 +54,7 @@ const renderRadios = (state, actions) => {
     return (
       <div class="radio" id={`radio-${radioIdx}`}>
         <h3>{name} ({tag})</h3>
-        <button class="add-cmd-to-radio" onclick={() => addCmd(radioIdx)}>+</button>
+        <button class="btn add-cmd-to-radio" onclick={() => addCmd(radioIdx)}>Add Command</button>
         {addingNewCmd ? newCmdForm(radioIdx, actions) : []}
         {
           commands.map((command, cmdIdx) => {
@@ -61,6 +62,7 @@ const renderRadios = (state, actions) => {
               name: cmdName,
               port: SerialPort,
               hex: IcomCommand,
+              baud: BaudRate,
             } = command;
 
             return (
@@ -68,11 +70,22 @@ const renderRadios = (state, actions) => {
                 <button
                   id={`cmd-${cmdIdx}`}
                   class="btn fire-cmd"
-                  onclick={() => postIcomCmd({ SerialPort, IcomCommand })}
+                  onclick={
+                    () => postIcomCmd({
+                      SerialPort,
+                      IcomCommand,
+                      BaudRate,
+                    })
+                  }
                 >
                   {cmdName}
                 </button>
-                <button class="delete-cmd">x</button>
+                <button
+                  class="btn delete-cmd"
+                  onclick={() => removeCmd({ radioIdx, cmdIdx })}
+                >
+                  Remove
+                </button>
               </div>
             );
           })
@@ -93,20 +106,18 @@ export default (state, actions) => {
   } = actions;
 
   return (
-    <div>
-      <p>
-        <input
-          placeholder="Search By Tag Name"
-          oninput={e => filterDisplayRadiosByTag(e.target.value)}
-        />
-      </p>
-      <p>
-        <input
-          placeholder="Search By Radio Name"
-          oninput={e => filterDisplayRadiosByName(e.target.value)}
-        />
-      </p>
-      {radios.length ? renderRadios(state, actions) : noRadios()}
+    <div class="radios">
+      <input
+        placeholder="Search By Tag Name"
+        oninput={e => filterDisplayRadiosByTag(e.target.value)}
+      />
+      <input
+        placeholder="Search By Radio Name"
+        oninput={e => filterDisplayRadiosByName(e.target.value)}
+      />
+      <div class="display-radios">
+        {radios.length ? renderRadios(state, actions) : noRadios()}
+      </div>
     </div>
   );
 };

@@ -62,7 +62,7 @@ export default {
 
         const updatedDisplayRadio = Object.assign({}, displayRadio);
 
-        updatedDisplayRadio.addingNewCmd = false;
+        updatedDisplayRadio.addingNewCmd = !updatedDisplayRadio.addingNewCmd;
         updatedDisplayRadio.commands = newCmds;
 
         return updatedDisplayRadio;
@@ -94,7 +94,7 @@ export default {
   addCmd: idx => ({ displayRadios }) => {
     const newRadioState = displayRadios.map((radio, i) => {
       if (i === idx) {
-        return Object.assign({}, radio, { addingNewCmd: true });
+        return Object.assign({}, radio, { addingNewCmd: !radio.addingNewCmd });
       }
 
       return radio;
@@ -102,6 +102,17 @@ export default {
 
     return {
       displayRadios: newRadioState,
+    };
+  },
+
+  removeCmd: ({ radioIdx, cmdIdx }) => ({ radios }) => {
+    radios[radioIdx].commands.splice(cmdIdx, 1);
+
+    lspi.set('radios', radios);
+
+    return {
+      radios,
+      displayRadios: [...radios],
     };
   },
 
@@ -128,12 +139,14 @@ export default {
       port,
       cmdname,
       cmdhex,
+      cmdbaud,
     } = newRadioOptions;
 
     const commands = [{
       port,
       name: cmdname,
       hex: cmdhex,
+      baud: cmdbaud,
     }];
 
     const newRadios = [
@@ -152,17 +165,34 @@ export default {
   },
 
   success: () => () => ({
-    commandSent: true,
-    commandSuccess: true,
+    posting: false,
+    success: true,
   }),
 
-  postIcomCmd: ({ SerialPort, IcomCommand }) => (state, { success }) => {
-    axios.post(ICOM_CMD_API, { SerialPort, IcomCommand })
+  failure: () => () => ({
+    posting: false,
+    success: false,
+  }),
+
+  posting: () => () => ({
+    cmdSent: true,
+    posting: true,
+  }),
+
+  postIcomCmd: ({
+    SerialPort,
+    IcomCommand,
+    BaudRate,
+  }) => (_state, { success, posting, failure }) => {
+    posting();
+
+    setTimeout(() => axios.post(ICOM_CMD_API, { SerialPort, IcomCommand, BaudRate })
       .then(() => {
         success();
       })
       .catch((err) => {
-        throw new Error(err);
-      });
+        failure();
+        console.error(err);
+      }), 300);
   },
 };

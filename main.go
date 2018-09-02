@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -26,9 +27,19 @@ func main() {
 	log.Fatal("Failed to run HMRCMD")
 }
 
-func icomParseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
+func icomParseCmdAndWriteToPort(
+	serialPort string,
+	icomCmd string,
+	baudRate string,
+) bool {
 	icomCmds := strings.Split(icomCmd, " ")
 	byteCmd := strings.Join(icomCmds, "")
+
+	baudInt, err := strconv.ParseInt(baudRate, 10, 32)
+
+	if err != nil {
+		panic(err)
+	}
 
 	data, err := hex.DecodeString(byteCmd)
 	if err != nil {
@@ -37,7 +48,7 @@ func icomParseCmdAndWriteToPort(serialPort string, icomCmd string) bool {
 
 	options := serial.OpenOptions{
 		PortName:        serialPort,
-		BaudRate:        9600,
+		BaudRate:        uint(baudInt),
 		DataBits:        8,
 		StopBits:        1,
 		MinimumReadSize: 4,
@@ -80,6 +91,7 @@ func icomGrabPortAndCommand(w http.ResponseWriter, r *http.Request) {
 	var incoming struct {
 		SerialPort  string
 		IcomCommand string
+		BaudRate    string
 	}
 
 	err := decoder.Decode(&incoming)
@@ -91,6 +103,7 @@ func icomGrabPortAndCommand(w http.ResponseWriter, r *http.Request) {
 	success := icomParseCmdAndWriteToPort(
 		incoming.SerialPort,
 		incoming.IcomCommand,
+		incoming.BaudRate,
 	)
 
 	if !success {

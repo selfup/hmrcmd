@@ -43,6 +43,14 @@ export default (state, { updateOptions, addRadio }) =>
         placeholder="First Command: FE FE 94 E0 26 00 05 00 01 FD"
       />
     </p>
+    <p>
+      <input
+        id="cmdbaud"
+        class="config-option"
+        oninput={updateOptions}
+        placeholder="Baud Rate: 9600"
+      />
+    </p>
     <button
       class="btn save-radio-btn"
       onclick={addRadio}

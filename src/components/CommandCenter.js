@@ -3,7 +3,8 @@ import { h } from 'hyperapp';
 import Home from './Home';
 import Config from './Config';
 import Radios from './Radios';
-import Sidebar from './Sidebar';
+import TopBar from './TopBar';
+import Indicators from './Indicators';
 
 import {
   HOME,
@@ -31,8 +32,9 @@ const renderContent = (state, actions) => {
 export default (state, actions) =>
   <div class="main">
     <div class="container">
-      <div class="sidebar">
-        {Sidebar(state, actions)}
+      {Indicators(state, actions)}
+      <div class="topbar">
+        {TopBar(state, actions)}
       </div>
       <div class="content">
         {renderContent(state, actions)}

@@ -1,6 +1,5 @@
 body {
   font-family: sans-serif;
-  background-color: lightgrey;
   font-weight: 200;
 }
 
@@ -9,7 +8,30 @@ button {
 }
 
 input {
+  margin: 1em;
+  border: solid 2px orange;
   padding: 1em;
+  min-width: 200px;
+}
+
+span.cmd-status-success {
+  font-size: 32px;
+  color: green;
+}
+
+span.cmd-status-failure {
+  font-size: 32px;
+  color: red;
+}
+
+img.loading {
+  height: 30px;
+  border-radius: 25px;
+  background-color: magenta;
+}
+
+.topbar > img {
+  vertical-align: center;
 }
 
 .main {
@@ -18,31 +40,27 @@ input {
 }
 
 .container {  
+  margin: auto;
   vertical-align: top;
-  display: inline-flex;
-  width: 100%;
-  max-width: 1400px;
 }
 
-.sidebar {
+.topbar {
   background-color: white;
   text-align: center;
-
-  width: 20%;
-  min-height: 94vh;
-  max-height: 9000px;
-  padding-top: 1em;
-  
-  border: solid 2px lightgrey;
+  margin-bottom: -2px;
 }
 
 .btn {
   padding: 1em;
-  display: block;
-  border: none;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 1em;
+  display: inline-block;
+  border: solid 2px turquoise;
+  min-width: 100px;
+  max-width: 300px;
+  margin: 1em;
+  border-radius: 25px;
+  outline: 0;
+  color: darkcyan;
+  font-size: 12px;
 }
 
 .content {
@@ -51,82 +69,54 @@ input {
   background-color: white;
   display: inline-flex;
   
-  padding: 1em;
-  width: 79%;
+  width: 100%;
   min-height: 94vh;
   max-height: 9000px;
   
-  border: solid 2px lightgrey;
   overflow: none;
 }
 
 .add-radio {
   width: 200px;
-  background-color: lightblue;
+  border-color: lightblue;
 }
 
 .import {
   width: 200px;
-  background-color: plum;
+  border-color: plum;
 }
 
 .export {
   width: 200px;
-  background-color: palevioletred;
+  border-color: palevioletred;
 }
 
 .save-radio {
   width: 200px;
-  background-color: lightseagreen;
+  border-color: lightseagreen;
 }
 
 .config-option {
   width: 300px;
 }
 
-.home-btn {
-  background-color: lightgreen;
-}
-
-.config-btn {
-  background-color: lightsalmon;
-}
-
-.radios-btn {
-  background-color: lightseagreen;
-}
-
-.save-radio-btn {
-  background-color: lightseagreen;
-}
-
 .fire-cmd {
   width: 60%;
-  background-color: #f74f5d;
+  border-color: #f74f5d;
   display: inline-block;
   margin: 1em;
 }
 
 .delete-cmd {
-  height: 35px;
-  width: 35px;
-  font-size: 20px;
-  border: solid 0px;
-  border-radius: 25px;
-
-  display: inline-block;
-  margin-top: 0.7em;
-  background-color: mediumpurple;
-
-  -webkit-box-shadow: 0 8px 6px -6px grey;
-	-moz-box-shadow: 0 8px 6px -6px grey;
-	box-shadow: 0px 8px 8px -6px grey;
+  border-color: mediumpurple;
 }
 
 .radio {
   padding: 1em;
-  background-color: antiquewhite;
-  width: 300px;
+  background-color: cornsilk;
+  border: solid 1px lightgray;
+  border-radius: 25px;
+  width: 400px;
   margin: 1em;
 
   -webkit-box-shadow: 0 8px 6px -6px grey;
@@ -134,25 +124,21 @@ input {
 	box-shadow: 0px 8px 8px -6px grey;
 }
 
+.display-radios > .radio {
+  display: inline-block;
+}
+
 .add-cmd-to-radio {
-  height: 45px;
-  width: 45px;
-  font-size: 20px;
-  border: solid 0px;
-  border-radius: 25px;
-  margin-bottom: 1em;
-
-  background-color: lightseagreen;
-
-  -webkit-box-shadow: 0 8px 6px -6px grey;
-	-moz-box-shadow: 0 8px 6px -6px grey;
-	box-shadow: 0px 8px 8px -6px grey;
+  border-color: lightgrey;
 }
 
 .radio-cmd {
   width: 100%;
   display: inline-block;
   background-color: white;
+  margin-top: 1em;
+
+  border-radius: 25px;
 
   -webkit-box-shadow: 0 8px 6px -6px grey;
 	-moz-box-shadow: 0 8px 6px -6px grey;
@@ -160,5 +146,5 @@ input {
 }
 
 .save-new-cmd-to-radio {
-  background-color: lightgreen;
+  border-color: lightgreen;
 }

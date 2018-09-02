@@ -3,6 +3,10 @@ import { HOME } from './../constants';
 export default {
   loacalStorage: '',
   radios: [],
+  posting: false,
+  success: false,
+  failure: false,
+  addingNewCmd: false,
   displayRadios: [],
   newRadioOptions: {},
   newConfig: false,
@@ -10,5 +14,6 @@ export default {
   cmd: {
     SerialPort: '',
     IcomCommand: '',
+    BaudRate: '',
   },
 };

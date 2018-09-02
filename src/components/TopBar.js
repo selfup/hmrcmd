@@ -4,7 +4,7 @@ import {
   HOME,
   CONFIG,
   RADIOS,
-} from './../constants';
+} from '../constants';
 
 export default (state, actions) => {
   const {
@@ -16,7 +16,7 @@ export default (state, actions) => {
   } = actions;
 
   return (
-    <div>
+    <div class="topbar">
       <button
         class="btn home-btn"
         onclick={() => updateContentType(HOME)}
