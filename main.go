@@ -6,8 +6,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
+	"syscall"
 	"time"
 
 	"github.com/gobuffalo/packr"
@@ -21,6 +24,25 @@ func main() {
 	http.HandleFunc("/api/v1/icom-cmd", icomGrabPortAndCommand)
 
 	fmt.Println("HMRCMD is now running on: http://localhost:8792")
+
+	switch runtime.GOOS {
+	case "darwin":
+		exec.Command("open", "http://localhost:8792").Run()
+		break
+
+	case "windows":
+		exec.Command("cmd.exe", "/C", "start "+"http://localhost:8792").Run()
+		break
+	default:
+		cmd := exec.Command("xdg-open", "http://localhost:8792")
+		cmd.SysProcAttr = &syscall.SysProcAttr{
+			Setpgid: true,
+		}
+
+		cmd.Run()
+
+		break
+	}
 
 	http.ListenAndServe(":8792", nil)
 

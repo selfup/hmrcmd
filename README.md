@@ -16,11 +16,9 @@ Currently ICOM is the main development focus.
 
 However you can input any HEX you like, so technically anything (like sending hex to an arduino)!
 
+In true HAM fashion, this applies to serial interfaced hardware :tada:
+
 ### Releases/Executables
-
-Currently only uploading Windows releases.
-
-MacOS/Linux are next on the list!
 
 Please check the releases page: https://github.com/selfup/hmrcmd/releases
 
