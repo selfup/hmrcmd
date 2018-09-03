@@ -29,12 +29,10 @@ Please check the releases page: https://github.com/selfup/hmrcmd/releases
     * Url: `http://localhost:8792`
     * Route: `/api/v1/icom-cmd`
     * Method: `POST`
-    * Body (JSON): `{SerialPort: '', IcomCommand: ''}`
-    * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD'}`
+    * Body (JSON): `{SerialPort: '', IcomCommand: '', BaudRate: ''}`
+    * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD', BaudRate: '9600'}`
 
-_Baudrate in the server is set to 9600 for the serialport calls._
-
-_It's the standard and is more than enough for sending small byte arrays_ :smile:
+:smile:
 
 ### Deps
 
