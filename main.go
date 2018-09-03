@@ -10,7 +10,6 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
-	"syscall"
 	"time"
 
 	"github.com/gobuffalo/packr"
@@ -25,19 +24,19 @@ func main() {
 
 	fmt.Println("HMRCMD is now running on: http://localhost:8792")
 
+	localhost := "http://localhost:8792"
+
 	switch runtime.GOOS {
 	case "darwin":
-		exec.Command("open", "http://localhost:8792").Run()
-		break
+		exec.Command("open", localhost).Run()
 
+		break
 	case "windows":
-		exec.Command("cmd.exe", "/C", "start "+"http://localhost:8792").Run()
+		exec.Command("cmd.exe", "/C", "start "+localhost).Run()
+
 		break
 	default:
-		cmd := exec.Command("xdg-open", "http://localhost:8792")
-		cmd.SysProcAttr = &syscall.SysProcAttr{
-			Setpgid: true,
-		}
+		cmd := exec.Command("xdg-open", localhost)
 
 		cmd.Run()
 
