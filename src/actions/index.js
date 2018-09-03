@@ -17,6 +17,17 @@ export default {
     };
   },
 
+  syncFromFile: radios => () => {
+    localStorage.radios = radios;
+
+    const parsedRadios = JSON.parse(radios);
+
+    return {
+      radios: parsedRadios,
+      displayRadios: [...parsedRadios],
+    };
+  },
+
   filterDisplayRadiosByTag: searchTerm => ({ radios }) => ({
     displayRadios: radios.filter((radio) => {
       const term = searchTerm.trim().toLowerCase();
@@ -192,7 +203,7 @@ export default {
       })
       .catch((err) => {
         failure();
-        console.error(err);
+        throw new Error(err);
       }), 300);
   },
 };

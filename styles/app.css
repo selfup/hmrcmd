@@ -53,6 +53,7 @@ img.loading {
 .btn {
   padding: 1em;
   display: inline-block;
+  background-color: white;
   border: solid 2px turquoise;
   min-width: 100px;
   max-width: 300px;
@@ -61,6 +62,10 @@ img.loading {
   outline: 0;
   color: darkcyan;
   font-size: 12px;
+}
+
+.btn > a {
+  color: black;
 }
 
 .content {
@@ -147,4 +152,15 @@ img.loading {
 
 .save-new-cmd-to-radio {
   border-color: lightgreen;
+}
+
+.show-json {
+  padding: 3em;
+}
+
+.import-file {
+  border: none;
+  width: 0;
+  border-radius: 25px;
+  background-color: lightblue;
 }
