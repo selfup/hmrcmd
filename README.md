@@ -34,7 +34,7 @@ Please check the releases page: https://github.com/selfup/hmrcmd/releases
 
 :smile:
 
-### Deps
+### Development Deps
 
 1. [Golang](https://golang.org)
 1. [Node](https://nodejs.org)
