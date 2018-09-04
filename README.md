@@ -14,9 +14,7 @@ Frontend is in [Hyperapp](https://github.com/hyperapp/hyperapp)
 
 Currently ICOM is the main development focus.
 
-However you can input any HEX you like, so technically anything (like sending hex to an arduino)!
-
-In true HAM fashion, this applies to serial interfaced hardware :tada:
+However you can input any SERIAL_PORT/BAUD_RATE/HEX you like, so technically anything (like sending hex to an arduino)!
 
 ### Releases/Executables
 
