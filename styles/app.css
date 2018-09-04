@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Roboto Thin', 'Roboto', sans-serif;
   font-weight: 200;
 }
 
@@ -127,41 +127,33 @@ img.loading {
 }
 
 .radio {
-  padding: 1em;
-  background-color: cornsilk;
-  border: solid 1px lightgray;
-  border-radius: 25px;
-  width: 400px;
+  padding: 0.5em;
+  background-color: white;
+  vertical-align: top;
+  border: solid 2px lightgray;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
   margin: 1em;
-
-  -webkit-box-shadow: 0 8px 6px -6px grey;
-	-moz-box-shadow: 0 8px 6px -6px grey;
-	box-shadow: 0px 8px 8px -6px grey;
 }
 
 .display-radios > .radio {
   display: inline-block;
 }
 
-.add-cmd-to-radio {
-  border-color: lightgrey;
-}
-
 .radio-cmd {
   width: 100%;
   display: inline-block;
   background-color: white;
-  margin-top: 1em;
-
+  border: solid 2px lightgrey;
+  border-radius: 15px !important;
+  margin-top: 0.4em;
+  margin-left: -1px;
   border-radius: 25px;
-
-  -webkit-box-shadow: 0 8px 6px -6px grey;
-	-moz-box-shadow: 0 8px 6px -6px grey;
-	box-shadow: 0px 8px 8px -6px grey;
 }
 
 .save-new-cmd-to-radio {
-  border-color: lightgreen;
+  border-color: mediumspringgreen;
 }
 
 input[type="file"] {

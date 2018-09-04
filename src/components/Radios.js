@@ -14,14 +14,12 @@ const newCmdForm = (idx, {
       placeholder="New Command HEX"
       oninput={updateNewCmdHex}
     />
-    <p>
-      <button
-        class="btn save-new-cmd-to-radio"
-        onclick={() => saveNewCmd(idx)}
-      >
-        Save New Command
-      </button>
-    </p>
+    <button
+      class="btn save-new-cmd-to-radio"
+      onclick={() => saveNewCmd(idx)}
+    >
+      Save New Command
+    </button>
   </div>;
 
 const noRadios = () =>
@@ -53,7 +51,7 @@ const renderRadios = (state, actions) => {
 
     return (
       <div class="radio" id={`radio-${radioIdx}`}>
-        <h3>{name} ({tag})</h3>
+        <p><strong>Name:</strong> {name} | <strong>Tag:</strong> {tag}</p>
         <button class="btn add-cmd-to-radio" onclick={() => addCmd(radioIdx)}>Add Command</button>
         {addingNewCmd ? newCmdForm(radioIdx, actions) : []}
         {
