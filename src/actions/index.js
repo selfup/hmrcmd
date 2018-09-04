@@ -17,6 +17,10 @@ export default {
     };
   },
 
+  toggleImportJSON: () => ({ importJSON }) => ({
+    importJSON: !importJSON,
+  }),
+
   syncFromFile: radios => () => {
     localStorage.radios = radios;
 

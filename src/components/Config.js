@@ -3,18 +3,18 @@ import { h } from 'hyperapp';
 import NewRadioConfig from './NewRadioConfig';
 
 function importJson(evt, syncFromFile) {
-  const f = evt.target.files[0];
+  const file = evt.target.files[0];
 
-  if (f) {
-    const r = new FileReader();
+  if (file) {
+    const reader = new FileReader();
 
-    r.onload = () => {
-      syncFromFile(r.result);
+    reader.onload = () => {
+      syncFromFile(reader.result);
     };
 
-    r.readAsText(f);
+    reader.readAsText(file);
   } else {
-    alert('Failed to load file');
+    document.window.prompt('Failed to load file');
   }
 }
 
@@ -22,15 +22,14 @@ export default (state, actions) => {
   const {
     radios,
     newConfig,
+    importJSON,
   } = state;
 
   const {
+    toggleImportJSON,
     syncFromFile,
     newRadio,
   } = actions;
-
-  const encdodedJSON = JSON.stringify(radios);
-  const configHref = `data:text/json;charset=utf-8,${encdodedJSON}`;
 
   return (
     <div>
@@ -42,26 +41,47 @@ export default (state, actions) => {
           Add Radio
         </button>
         <button
+          class="btn import"
+          onclick={toggleImportJSON}
+        >
+          Import JSON Config
+        </button>
+        <button
           class="btn export"
+          onclick={() => document.querySelector('.export-json-link').click()}
         >
           <a
-            href={configHref}
-            download="hmrcmdr-config.json"
+            hidden={true}
+            class="export-json-link"
+            href={`data:text/json;charset=utf-8,${JSON.stringify(radios)}`}
+            download={
+              `hmrcmdr-config-${
+                new Date()
+                  .toLocaleString()
+                  .replace(',', '')
+                  .split(' ')
+                  .join(',')
+              }.json`
+            }
           >
-            Export JSON Config
           </a>
+          Export JSON Config
         </button>
-        <div class="import-json-config">
-          <span>Import JSON Config</span>
-          <input
-            class="import-file"
-            type="file"
-            placeholder="Import JSON Config"
-            onchange={e => importJson(e, syncFromFile)}
-          />
-        </div>
       </div>
       {newConfig ? NewRadioConfig(state, actions) : []}
+      {
+        importJSON
+          ? <div class="import-json-config">
+            <p>Import JSON Config</p>
+            <input
+              class="import-file"
+              type="file"
+              placeholder="Import JSON Config"
+              onchange={e => importJson(e, syncFromFile)}
+            />
+          </div>
+          : []
+      }
     </div>
   );
 };

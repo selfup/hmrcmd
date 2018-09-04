@@ -96,6 +96,10 @@ img.loading {
   border-color: palevioletred;
 }
 
+.export > a {
+  text-decoration: none;
+}
+
 .save-radio {
   width: 200px;
   border-color: lightseagreen;
