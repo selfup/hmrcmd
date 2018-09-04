@@ -22,11 +22,9 @@ export default (state, actions) => {
   const {
     radios,
     newConfig,
-    importJSON,
   } = state;
 
   const {
-    toggleImportJSON,
     syncFromFile,
     newRadio,
   } = actions;
@@ -40,12 +38,15 @@ export default (state, actions) => {
         >
           Add Radio
         </button>
-        <button
-          class="btn import"
-          onclick={toggleImportJSON}
-        >
+        <label class="btn import import-file">
+          <input
+            hidden={true}
+            type="file"
+            placeholder="Import JSON Config"
+            onchange={e => importJson(e, syncFromFile)}
+          />
           Import JSON Config
-        </button>
+        </label>
         <button
           class="btn export"
           onclick={() => document.querySelector('.export-json-link').click()}
@@ -69,19 +70,6 @@ export default (state, actions) => {
         </button>
       </div>
       {newConfig ? NewRadioConfig(state, actions) : []}
-      {
-        importJSON
-          ? <div class="import-json-config">
-            <p>Import JSON Config</p>
-            <input
-              class="import-file"
-              type="file"
-              placeholder="Import JSON Config"
-              onchange={e => importJson(e, syncFromFile)}
-            />
-          </div>
-          : []
-      }
     </div>
   );
 };

@@ -58,6 +58,7 @@ img.loading {
   min-width: 100px;
   max-width: 300px;
   margin: 1em;
+  cursor: pointer;
   border-radius: 25px;
   outline: 0;
   color: darkcyan;
@@ -84,6 +85,7 @@ img.loading {
 .add-radio {
   width: 200px;
   border-color: lightblue;
+  cursor: pointer;
 }
 
 .import {
@@ -158,13 +160,15 @@ img.loading {
   border-color: lightgreen;
 }
 
-.show-json {
-  padding: 3em;
+input[type="file"] {
+  display: none;
+  cursor: pointer;
+}
+
+.import-file > input {
+  cursor: pointer;
 }
 
 .import-file {
-  border: none;
-  width: 0;
-  border-radius: 25px;
-  background-color: lightblue;
+  cursor: pointer;
 }

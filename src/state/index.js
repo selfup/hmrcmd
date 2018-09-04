@@ -7,7 +7,6 @@ export default {
   success: false,
   failure: false,
   addingNewCmd: false,
-  importJSON: false,
   displayRadios: [],
   newRadioOptions: {},
   newConfig: false,
