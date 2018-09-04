@@ -2,7 +2,7 @@
 
 Ham Radio Command Center :pray:
 
-![2018-09-03 11 21 14](https://user-images.githubusercontent.com/9837366/44996100-ad615a00-af6b-11e8-9e95-8180832f0242.gif)
+![](https://user-images.githubusercontent.com/9837366/45041314-984cff80-b02d-11e8-97f7-1fbbeb2899d1.png)
 
 Portable executable webserver/client that can be run on Windows/MacOS/Linux.
 
