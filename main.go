@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -118,11 +119,15 @@ func sync(w http.ResponseWriter, r *http.Request) {
 
 	home := os.Getenv("USERPROFILE")
 
+	fmt.Println(home)
+
 	if home == "" {
 		home = os.Getenv("HOME")
 	}
 
-	configFile := home + "/Documents/" + ".hmrcmd-config.json"
+	configFile := filepath.Join(home, ".hmrcmd-config.json")
+
+	fmt.Println(configFile)
 
 	if (*r).Method == "GET" {
 		if _, err := os.Stat(configFile); err == nil {
