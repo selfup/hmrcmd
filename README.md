@@ -40,6 +40,8 @@ Once downloaded:
 
 1. MacOS/Linux execute the file via the commandline: `./path/to/latest/release`
 
+It will auto open a browser window and be ready to run :tada:
+
 ### API
 
 1. ICOM Endpoint
