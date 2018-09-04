@@ -204,6 +204,6 @@ export default {
       .catch((err) => {
         failure();
         throw new Error(err);
-      }), 300);
+      }), 10);
   },
 };
