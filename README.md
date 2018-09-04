@@ -22,6 +22,24 @@ In true HAM fashion, this applies to serial interfaced hardware :tada:
 
 Please check the releases page: https://github.com/selfup/hmrcmd/releases
 
+### Downloading/Installing/Running HMRCMD
+
+Go to the releases page: https://github.com/selfup/hmrcmd/releases
+
+1. Windows, download the latest `.exe` release
+1. MacOS, download the latest `darwin-` release
+1. Linux, download the latest `linux-` release
+
+Once downloaded:
+
+1. Windows:
+    1. Double click the `exe`
+    1. Warning Protected Screen click -> More Info -> Allow
+    1. Firewall -> Allow
+    1. Done!
+
+1. MacOS/Linux execute the file via the commandline: `./path/to/latest/release`
+
 ### API
 
 1. ICOM Endpoint
