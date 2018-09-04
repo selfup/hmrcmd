@@ -133,9 +133,8 @@ func sync(w http.ResponseWriter, r *http.Request) {
 
 			fmt.Fprintf(w, string(config))
 		} else {
-			fmt.Fprintf(w, string("[]"))
+			fmt.Fprintf(w, string(""))
 		}
-
 	}
 
 	if (*r).Method == "POST" {
@@ -150,8 +149,6 @@ func sync(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "failed to parse incoming JSON", 1000)
 			return
 		}
-
-		fmt.Printf("CONFIG: %s", incoming.Config)
 
 		contents := []byte(incoming.Config)
 

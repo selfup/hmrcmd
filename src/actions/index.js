@@ -11,7 +11,7 @@ export default {
     return axios.get(HMRCMD_SYNC_API)
       .then((res) => {
         const { data } = res;
-        if (data) {
+        if (data.length) {
           actions.syncFromJSON(data);
         }
 
