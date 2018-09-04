@@ -55,11 +55,7 @@ Install JS deps: `npm i`
 
 **Caveats**
 
-Cannot make API calls on the development frontend.
-
-Can make API calls when running the go server but you are locked-in until you rebuild new frontend assets.
-
-Thankfully all data is stored in localStorage which ensures that UX/UI can be properly developed.
+Can make API calls when running the go server but you have to kill and reload the go server for new backend functionality.
 
 ### Run the backend
 
