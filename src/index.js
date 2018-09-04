@@ -15,9 +15,12 @@ const appArgs = [
 function onMount(main) {
   const {
     syncFromJSON,
+    syncFromServer,
   } = main;
 
   const radios = lspi.get('radios');
+
+  syncFromServer();
 
   if (radios && radios.length) {
     syncFromJSON(radios);

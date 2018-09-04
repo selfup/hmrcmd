@@ -2,12 +2,45 @@ import axios from 'axios';
 import lspi from 'lspi';
 
 const ICOM_CMD_API = '/api/v1/icom-cmd';
+const HMRCMD_SYNC_API = '/api/v1/sync';
 
 export default {
+  syncFromServer: () => (state, actions) => {
+    actions.posting();
+
+    return axios.get(HMRCMD_SYNC_API)
+      .then((res) => {
+        const { data } = res;
+        if (data) {
+          actions.syncFromJSON(data);
+        }
+
+        actions.success();
+      })
+      .catch((err) => {
+        actions.failure();
+        throw new Error(err);
+      });
+  },
+
+  syncToServer: () => (state, actions) => {
+    actions.posting();
+
+    return axios.post(HMRCMD_SYNC_API, { Config: localStorage.radios })
+      .then(() => {
+        actions.success();
+      })
+      .catch((err) => {
+        actions.failure();
+        throw new Error(err);
+      });
+  },
+
   syncFromJSON: radios => () => {
     if (typeof json === 'string') {
       return {
         radios: JSON.parse(radios),
+        displayRadios: [...JSON.parse(radios)],
       };
     }
 
@@ -17,15 +50,13 @@ export default {
     };
   },
 
-  syncFromFile: radios => () => {
+  syncFromFile: radios => (state, { syncToServer, syncFromJSON }) => {
     localStorage.radios = radios;
 
     const parsedRadios = JSON.parse(radios);
 
-    return {
-      radios: parsedRadios,
-      displayRadios: [...parsedRadios],
-    };
+    syncFromJSON(parsedRadios);
+    syncToServer();
   },
 
   filterDisplayRadiosByTag: searchTerm => ({ radios }) => ({
@@ -59,7 +90,7 @@ export default {
     displayRadios,
     newCmdName,
     newCmdHex,
-  }) => {
+  }, { syncFromJSON, syncToServer }) => {
     const updatedDisplayRadios = displayRadios.map((displayRadio, i) => {
       if (i === idx) {
         const {
@@ -93,12 +124,12 @@ export default {
     });
 
     lspi.set('radios', updatedRadios);
+    syncFromJSON(updatedRadios);
+    syncToServer();
 
     return {
       newCmdName,
       newCmdHex,
-      radios: updatedRadios,
-      displayRadios: updatedDisplayRadios,
     };
   },
 
@@ -116,15 +147,12 @@ export default {
     };
   },
 
-  removeCmd: ({ radioIdx, cmdIdx }) => ({ radios }) => {
+  removeCmd: ({ radioIdx, cmdIdx }) => ({ radios }, { syncFromJSON, syncToServer }) => {
     radios[radioIdx].commands.splice(cmdIdx, 1);
 
     lspi.set('radios', radios);
-
-    return {
-      radios,
-      displayRadios: [...radios],
-    };
+    syncFromJSON(radios);
+    syncToServer();
   },
 
   updateContentType: contentType => () => ({
@@ -145,7 +173,7 @@ export default {
     };
   },
 
-  addRadio: () => ({ radios, newRadioOptions }) => {
+  addRadio: () => ({ radios, newRadioOptions }, { syncToServer, syncFromJSON }) => {
     const {
       port,
       cmdname,
@@ -166,10 +194,10 @@ export default {
     ];
 
     lspi.set('radios', newRadios);
+    syncFromJSON(newRadios);
+    syncToServer();
 
     return {
-      radios: newRadios,
-      displayRadios: newRadios,
       newConfig: false,
       newRadioOptions: {},
     };

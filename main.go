@@ -4,8 +4,10 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
@@ -21,6 +23,7 @@ func main() {
 
 	http.Handle("/", http.FileServer(box))
 	http.HandleFunc("/api/v1/icom-cmd", icomGrabPortAndCommand)
+	http.HandleFunc("/api/v1/sync", sync)
 
 	fmt.Println("HMRCMD is now running on: http://localhost:8792")
 
@@ -105,6 +108,65 @@ func icomParseCmdAndWriteToPort(
 	time.Sleep(100 * time.Millisecond)
 
 	return true
+}
+
+func sync(w http.ResponseWriter, r *http.Request) {
+	setupResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+
+	home := os.Getenv("USERPROFILE")
+
+	if home == "" {
+		home = os.Getenv("HOME")
+	}
+
+	configFile := home + "/Documents/" + ".hmrcmd-config.json"
+
+	if (*r).Method == "GET" {
+		if _, err := os.Stat(configFile); err == nil {
+			config, err := ioutil.ReadFile(configFile)
+			if err != nil {
+				log.Fatalf("readfileError: %v", err)
+			}
+
+			fmt.Fprintf(w, string(config))
+		} else {
+			fmt.Fprintf(w, string("[]"))
+		}
+
+	}
+
+	if (*r).Method == "POST" {
+		var incoming struct {
+			Config string
+		}
+
+		decoder := json.NewDecoder(r.Body)
+
+		err := decoder.Decode(&incoming)
+		if err != nil {
+			http.Error(w, "failed to parse incoming JSON", 1000)
+			return
+		}
+
+		fmt.Printf("CONFIG: %s", incoming.Config)
+
+		contents := []byte(incoming.Config)
+
+		e := ioutil.WriteFile(configFile, contents, 0644)
+		if e != nil {
+			log.Fatalf("writefileError: %v", err)
+		}
+
+		config, err := ioutil.ReadFile(configFile)
+		if err != nil {
+			log.Fatalf("readfileError: %v", err)
+		}
+
+		fmt.Fprintf(w, string(config))
+	}
 }
 
 func icomGrabPortAndCommand(w http.ResponseWriter, r *http.Request) {
