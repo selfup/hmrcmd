@@ -54,6 +54,18 @@ It will auto open a browser window and be ready to run :tada:
 
 :smile:
 
+### Development Guidelines
+
+Please read the `CODE_OF_CONDUCT.md` file :pray:
+
+I use [VSCode](https://code.visualstudio.com/) with three extensions for this project:
+
+1. [Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
+1. [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+1. [Go Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go)
+
+Please fork the project and make a Pull Request (PR) to contribute!
+
 ### Development Deps
 
 1. [Golang](https://golang.org)
@@ -106,18 +118,6 @@ Cannot update frontend while testing API calls. Frontend must be compiled via `p
 **MacOS / Linux**
 
 `./scripts/release.sh`
-
-### Development Guidelines
-
-Please read the `CODE_OF_CONDUCT.md` file :pray:
-
-I use [VSCode](https://code.visualstudio.com/) with three extensions for this project:
-
-1. [Powershell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
-1. [Editorconfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
-1. [Go Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go)
-
-Please fork the project and make a Pull Request (PR) to contribute!
 
 ### Virtual Ports and Observing Calls Without Hardware
 
