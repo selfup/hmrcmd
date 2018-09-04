@@ -2,7 +2,7 @@
 
 # Issues
 
-- [ ] The README is very thorough - Ensure you have searched through it
-- [ ] Check to see if the issue you are making has been asked/solved
-- [ ] If the same question has been asked, follow through on that issue
-- [ ] Issues at this time are only for reporting bugs
+1. The README is very thorough - Ensure you have searched through it
+1. Check to see if the issue you are making has been asked/solved
+1. If the same question has been asked, follow through on that issue
+1. Issues at this time are only for reporting bugs
