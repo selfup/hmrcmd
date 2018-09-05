@@ -103,10 +103,6 @@ To test API calls without using the frontend there are scripts!
 
 `./scripts/post.cmd.sh`
 
-**Caveats**
-
-Cannot update frontend while testing API calls. Frontend must be compiled via `packr` to ensure that the go server serves the files correctly which ensures that [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) is not a problem.
-
 ### Compile into a binary release
 
 **Windows**
