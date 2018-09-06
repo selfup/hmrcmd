@@ -38,7 +38,7 @@ export default (state, actions) => {
         >
           Add Radio
         </button>
-        <label class="btn import import-file">
+        <label class="btn import">
           <input
             hidden={true}
             type="file"
@@ -53,7 +53,6 @@ export default (state, actions) => {
         >
           <a
             hidden={true}
-            class="export-json-link"
             href={`data:text/json;charset=utf-8,${JSON.stringify(radios)}`}
             download={
               `hmrcmdr-config-${

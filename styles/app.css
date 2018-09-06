@@ -12,6 +12,15 @@ input {
   border: solid 2px orange;
   padding: 1em;
   min-width: 200px;
+  outline: 0;
+}
+
+input:focus {
+  background-color: #ffdeb7;
+}
+
+input:hover {
+  background-color: #ffdeb7;
 }
 
 span.cmd-status-success {
@@ -65,12 +74,12 @@ img.loading {
   font-size: 12px;
 }
 
-.btn > a {
-  color: black;
+.btn:active {
+  background-color: turquoise !important;
 }
 
-.btn:active {
-  background-color: lightskyblue;
+.btn:hover {
+  background-color: lightcyan;
 }
 
 .content {
@@ -97,18 +106,25 @@ img.loading {
   border-color: plum;
 }
 
+.import:hover {
+  background-color: lightpink;
+}
+
+.import:active {
+    background-color: plum !important;
+}
+
 .export {
   width: 200px;
   border-color: palevioletred;
 }
 
-.export > a {
-  text-decoration: none;
+.export:hover {
+  border-color: lightpink;
 }
 
-.save-radio {
-  width: 200px;
-  border-color: lightseagreen;
+.export:active {
+  border-color: palevioletred !important;
 }
 
 .config-option {
@@ -122,8 +138,24 @@ img.loading {
   margin: 1em;
 }
 
+.fire-cmd:hover {
+  background-color: #ffb2b2;
+}
+
+.fire-cmd:active {
+  background-color: #f74f5d !important;
+}
+
 .delete-cmd {
   border-color: mediumpurple;
+}
+
+.delete-cmd:hover {
+  border-color: rgb(193, 165, 250);
+}
+
+.delete-cmd:active {
+  border-color: mediumpurple !important;
 }
 
 .radio {
@@ -150,21 +182,4 @@ img.loading {
   margin-top: 0.4em;
   margin-left: -1px;
   border-radius: 25px;
-}
-
-.save-new-cmd-to-radio {
-  border-color: mediumspringgreen;
-}
-
-input[type="file"] {
-  display: none;
-  cursor: pointer;
-}
-
-.import-file > input {
-  cursor: pointer;
-}
-
-.import-file {
-  cursor: pointer;
 }

@@ -13,7 +13,6 @@ export default (state, actions) => {
 
   const {
     updateContentType,
-    syncToServer,
   } = actions;
 
   return (
@@ -36,12 +35,6 @@ export default (state, actions) => {
       >
         Radios ({radios.length})
       </button>
-      <button
-        class="btn sync-to-server"
-        onclick={syncToServer}
-      >
-        Sync to Server
-        </button>
     </div>
   );
 };
