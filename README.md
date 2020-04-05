@@ -31,10 +31,11 @@ Go to the releases page: https://github.com/selfup/hmrcmd/releases
 Once downloaded:
 
 1. Windows:
-    1. Double click the `exe`
-    1. Warning Protected Screen click -> More Info -> Allow
-    1. Firewall -> Allow
-    1. Done!
+
+   1. Double click the `exe`
+   1. Warning Protected Screen click -> More Info -> Allow
+   1. Firewall -> Allow
+   1. Done!
 
 1. MacOS/Linux execute the file via the commandline: `./path/to/latest/release`
 
@@ -44,11 +45,11 @@ It will auto open a browser window and be ready to run :tada:
 
 1. ICOM Endpoint
 
-    * Url: `http://localhost:8792`
-    * Route: `/api/v1/icom-cmd`
-    * Method: `POST`
-    * Body (JSON): `{SerialPort: '', IcomCommand: '', BaudRate: ''}`
-    * Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD', BaudRate: '9600'}`
+   - Url: `http://localhost:8792`
+   - Route: `/api/v1/icom-cmd`
+   - Method: `POST`
+   - Body (JSON): `{SerialPort: '', IcomCommand: '', BaudRate: ''}`
+   - Example payload: `{SerialPort: 'COM3', IcomCommand: 'FE FE 94 E0 26 00 05 00 01 FD', BaudRate: '9600'}`
 
 :smile:
 
@@ -128,7 +129,7 @@ Example:
 1. RealTerm listen to: COM12
 1. SerialPort for HEX command: COM13
 
-***
+---
 
 **MacOS/Linux**
 
