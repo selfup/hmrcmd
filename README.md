@@ -105,13 +105,7 @@ To test API calls without using the frontend there are scripts!
 
 ### Compile into a binary release
 
-**Windows**
-
-`./scripts/release.ps1`
-
-**MacOS / Linux**
-
-`./scripts/release.sh`
+`./scripts/releases.sh`
 
 ### Virtual Ports and Observing Calls Without Hardware
 
