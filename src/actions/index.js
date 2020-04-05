@@ -8,7 +8,8 @@ export default {
   syncFromServer: () => (state, actions) => {
     actions.posting();
 
-    return axios.get(HMRCMD_SYNC_API)
+    return axios
+      .get(HMRCMD_SYNC_API)
       .then((res) => {
         const { data } = res;
         if (data.length) {
@@ -26,7 +27,8 @@ export default {
   syncToServer: () => (state, actions) => {
     actions.posting();
 
-    return axios.post(HMRCMD_SYNC_API, { Config: localStorage.radios })
+    return axios
+      .post(HMRCMD_SYNC_API, { Config: localStorage.radios })
       .then(() => {
         actions.success();
       })
@@ -36,7 +38,7 @@ export default {
       });
   },
 
-  syncFromJSON: radios => () => {
+  syncFromJSON: (radios) => () => {
     if (typeof json === 'string') {
       return {
         radios: JSON.parse(radios),
@@ -50,7 +52,7 @@ export default {
     };
   },
 
-  syncFromFile: radios => (state, { syncToServer, syncFromJSON }) => {
+  syncFromFile: (radios) => (state, { syncToServer, syncFromJSON }) => {
     localStorage.radios = radios;
 
     const parsedRadios = JSON.parse(radios);
@@ -59,7 +61,7 @@ export default {
     syncToServer();
   },
 
-  filterDisplayRadiosByTag: searchTerm => ({ radios }) => ({
+  filterDisplayRadiosByTag: (searchTerm) => ({ radios }) => ({
     displayRadios: radios.filter((radio) => {
       const term = searchTerm.trim().toLowerCase();
       const tag = radio.tag.toLowerCase();
@@ -68,7 +70,7 @@ export default {
     }),
   }),
 
-  filterDisplayRadiosByName: searchTerm => ({ radios }) => ({
+  filterDisplayRadiosByName: (searchTerm) => ({ radios }) => ({
     displayRadios: radios.filter((radio) => {
       const term = searchTerm.trim().toLowerCase();
       const name = radio.name.toLowerCase();
@@ -85,17 +87,13 @@ export default {
     newCmdHex: newCmdHex.trim(),
   }),
 
-  saveNewCmd: idx => ({
-    radios,
-    displayRadios,
-    newCmdName,
-    newCmdHex,
-  }, { syncFromJSON, syncToServer }) => {
+  saveNewCmd: (idx) => (
+    { radios, displayRadios, newCmdName, newCmdHex },
+    { syncFromJSON, syncToServer },
+  ) => {
     const updatedDisplayRadios = displayRadios.map((displayRadio, i) => {
       if (i === idx) {
-        const {
-          port,
-        } = displayRadio;
+        const { port } = displayRadio;
 
         const newCmds = [
           { name: newCmdName, hex: newCmdHex, port },
@@ -133,7 +131,7 @@ export default {
     };
   },
 
-  addCmd: idx => ({ displayRadios }) => {
+  addCmd: (idx) => ({ displayRadios }) => {
     const newRadioState = displayRadios.map((radio, i) => {
       if (i === idx) {
         return Object.assign({}, radio, { addingNewCmd: !radio.addingNewCmd });
@@ -147,7 +145,10 @@ export default {
     };
   },
 
-  removeCmd: ({ radioIdx, cmdIdx }) => ({ radios }, { syncFromJSON, syncToServer }) => {
+  removeCmd: ({ radioIdx, cmdIdx }) => (
+    { radios },
+    { syncFromJSON, syncToServer },
+  ) => {
     radios[radioIdx].commands.splice(cmdIdx, 1);
 
     lspi.set('radios', radios);
@@ -155,7 +156,7 @@ export default {
     syncToServer();
   },
 
-  updateContentType: contentType => () => ({
+  updateContentType: (contentType) => () => ({
     contentType,
   }),
 
@@ -173,20 +174,20 @@ export default {
     };
   },
 
-  addRadio: () => ({ radios, newRadioOptions }, { syncToServer, syncFromJSON }) => {
-    const {
-      port,
-      cmdname,
-      cmdhex,
-      cmdbaud,
-    } = newRadioOptions;
+  addRadio: () => (
+    { radios, newRadioOptions },
+    { syncToServer, syncFromJSON },
+  ) => {
+    const { port, cmdname, cmdhex, cmdbaud } = newRadioOptions;
 
-    const commands = [{
-      port,
-      name: cmdname,
-      hex: cmdhex,
-      baud: cmdbaud,
-    }];
+    const commands = [
+      {
+        port,
+        name: cmdname,
+        hex: cmdhex,
+        baud: cmdbaud,
+      },
+    ];
 
     const newRadios = [
       Object.assign({}, { commands, addingNewCmd: false }, newRadioOptions),
@@ -218,20 +219,24 @@ export default {
     posting: true,
   }),
 
-  postIcomCmd: ({
-    SerialPort,
-    IcomCommand,
-    BaudRate,
-  }) => (_state, { success, posting, failure }) => {
+  postIcomCmd: ({ SerialPort, IcomCommand, BaudRate }) => (
+    _state,
+    { success, posting, failure },
+  ) => {
     posting();
 
-    setTimeout(() => axios.post(ICOM_CMD_API, { SerialPort, IcomCommand, BaudRate })
-      .then(() => {
-        success();
-      })
-      .catch((err) => {
-        failure();
-        throw new Error(err);
-      }), 10);
+    setTimeout(
+      () =>
+        axios
+          .post(ICOM_CMD_API, { SerialPort, IcomCommand, BaudRate })
+          .then(() => {
+            success();
+          })
+          .catch((err) => {
+            failure();
+            throw new Error(err);
+          }),
+      10,
+    );
   },
 };

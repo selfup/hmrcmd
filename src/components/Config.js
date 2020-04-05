@@ -19,23 +19,14 @@ function importJson(evt, syncFromFile) {
 }
 
 export default (state, actions) => {
-  const {
-    radios,
-    newConfig,
-  } = state;
+  const { radios, newConfig } = state;
 
-  const {
-    syncFromFile,
-    newRadio,
-  } = actions;
+  const { syncFromFile, newRadio } = actions;
 
   return (
     <div>
       <div>
-        <button
-          class="btn add-radio"
-          onclick={newRadio}
-        >
+        <button class="btn add-radio" onclick={newRadio}>
           Add Radio
         </button>
         <label class="btn import import-file">
@@ -43,7 +34,7 @@ export default (state, actions) => {
             hidden={true}
             type="file"
             placeholder="Import JSON Config"
-            onchange={e => importJson(e, syncFromFile)}
+            onchange={(e) => importJson(e, syncFromFile)}
           />
           Import JSON Config
         </label>
@@ -55,17 +46,12 @@ export default (state, actions) => {
             hidden={true}
             class="export-json-link"
             href={`data:text/json;charset=utf-8,${JSON.stringify(radios)}`}
-            download={
-              `hmrcmdr-config-${
-                new Date()
-                  .toLocaleString()
-                  .replace(',', '')
-                  .split(' ')
-                  .join(',')
-              }.json`
-            }
-          >
-          </a>
+            download={`hmrcmdr-config-${new Date()
+              .toLocaleString()
+              .replace(',', '')
+              .split(' ')
+              .join(',')}.json`}
+          ></a>
           Export JSON Config
         </button>
       </div>

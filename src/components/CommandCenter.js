@@ -6,16 +6,10 @@ import Radios from './Radios';
 import TopBar from './TopBar';
 import Indicators from './Indicators';
 
-import {
-  HOME,
-  CONFIG,
-  RADIOS,
-} from './../constants';
+import { HOME, CONFIG, RADIOS } from './../constants';
 
 const renderContent = (state, actions) => {
-  const {
-    contentType,
-  } = state;
+  const { contentType } = state;
 
   switch (contentType) {
     case HOME:
@@ -29,15 +23,12 @@ const renderContent = (state, actions) => {
   }
 };
 
-export default (state, actions) =>
+export default (state, actions) => (
   <div class="main">
     <div class="container">
       {Indicators(state, actions)}
-      <div class="topbar">
-        {TopBar(state, actions)}
-      </div>
-      <div class="content">
-        {renderContent(state, actions)}
-      </div>
+      <div class="topbar">{TopBar(state, actions)}</div>
+      <div class="content">{renderContent(state, actions)}</div>
     </div>
-  </div>;
+  </div>
+);

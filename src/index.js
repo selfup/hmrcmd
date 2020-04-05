@@ -5,18 +5,10 @@ import actions from './actions';
 import state from './state';
 import view from './components/CommandCenter';
 
-const appArgs = [
-  state,
-  actions,
-  view,
-  document.getElementById('app'),
-];
+const appArgs = [state, actions, view, document.getElementById('app')];
 
 function onMount(main) {
-  const {
-    syncFromJSON,
-    syncFromServer,
-  } = main;
+  const { syncFromJSON, syncFromServer } = main;
 
   const radios = lspi.get('radios');
 
@@ -30,12 +22,11 @@ function onMount(main) {
 let main;
 
 if (process.env.NODE_ENV !== 'production') {
-  import('hyperapp-redux-devtools')
-    .then((devtools) => {
-      main = devtools(app)(...appArgs);
+  import('hyperapp-redux-devtools').then((devtools) => {
+    main = devtools(app)(...appArgs);
 
-      onMount(main);
-    });
+    onMount(main);
+  });
 } else {
   main = app(...appArgs);
 

@@ -1,6 +1,6 @@
 import { h } from 'hyperapp';
 
-export default (state, { updateOptions, addRadio }) =>
+export default (state, { updateOptions, addRadio }) => (
   <section>
     <h3>Configure your new radio</h3>
     <p>
@@ -51,10 +51,8 @@ export default (state, { updateOptions, addRadio }) =>
         placeholder="Baud Rate: 9600"
       />
     </p>
-    <button
-      class="btn save-radio-btn"
-      onclick={addRadio}
-    >
+    <button class="btn save-radio-btn" onclick={addRadio}>
       Save New Radio
     </button>
-  </section>;
+  </section>
+);

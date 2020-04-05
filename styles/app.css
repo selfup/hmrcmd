@@ -39,7 +39,7 @@ img.loading {
   margin: auto;
 }
 
-.container {  
+.container {
   margin: auto;
   vertical-align: top;
 }
@@ -78,11 +78,11 @@ img.loading {
   justify-content: center;
   background-color: white;
   display: inline-flex;
-  
+
   width: 100%;
   min-height: 94vh;
   max-height: 9000px;
-  
+
   overflow: none;
 }
 
@@ -156,7 +156,7 @@ img.loading {
   border-color: mediumspringgreen;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
   cursor: pointer;
 }
