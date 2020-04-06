@@ -4,9 +4,10 @@
   "description": "frontend for hmrcmd",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack -p --config webpack.config.prod.js",
-    "test": "echo 'noope'"
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url ./",
+    "wipe": "rm -rf .git && git init && git add . && git commit -m 'initial commit'",
+    "test": "echo '100% coverage..'"
   },
   "author": "Regis Boudinot (selfup)",
   "license": "MIT",
@@ -16,22 +17,26 @@
     "hyperapp-redux-devtools": "^1.1.6",
     "lspi": "^3.3.0"
   },
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ],
+    "plugins": [
+      [
+        "@babel/transform-react-jsx",
+        {
+          "pragma": "h"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
-    "babel-cli": "^6.22.2",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^7.1.5",
-    "babel-minify-webpack-plugin": "^0.2.0",
-    "babel-plugin-dynamic-import-webpack": "^1.1.0",
-    "babel-plugin-transform-react-jsx": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "css-loader": "^0.28.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "html-webpack-plugin": "^3.2.0",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
+    "@babel/preset-env": "^7.9.0",
+    "cssnano": "^4.1.10",
     "imports": "^1.0.0",
-    "node-libs-browser": "^2.0.0",
-    "script-ext-html-webpack-plugin": "^2.0.1",
-    "uglifyjs-webpack-plugin": "^1.2.4",
-    "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.4.2"
+    "node-libs-browser": "^2.2.1",
+    "parcel": "^1.12.4"
   }
 }

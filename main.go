@@ -20,7 +20,7 @@ import (
 )
 
 func main() {
-	box := packr.NewBox("build")
+	box := packr.NewBox("dist")
 
 	http.Handle("/", http.FileServer(box))
 	http.HandleFunc("/api/v1/icom-cmd", icomGrabPortAndCommand)

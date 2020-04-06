@@ -38,3 +38,6 @@ $RECYCLE.BIN/
 main
 hmrcmd
 HMRCMD
+index.html
+.cache
+dist
