@@ -4,15 +4,14 @@
   "description": "frontend for hmrcmd",
   "main": "index.js",
   "scripts": {
-    "start": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --public-url ./",
-    "wipe": "rm -rf .git && git init && git add . && git commit -m 'initial commit'",
+    "start": "mkdir -p dist && cp favicon.ico dist/ && parcel ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url ./ && mkdir -p dist && cp favicon.ico build/",
     "test": "echo '100% coverage..'"
   },
-  "author": "Regis Boudinot (selfup)",
+  "author": "Regis Boudinot",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.19.0",
     "hyperapp": "^1.2.10",
     "hyperapp-redux-devtools": "^1.1.6",
     "lspi": "^3.3.0"
@@ -31,11 +30,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/plugin-transform-react-jsx": "^7.9.4",
-    "@babel/preset-env": "^7.9.0",
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-react-jsx": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
     "cssnano": "^4.1.10",
-    "imports": "^1.0.0",
     "node-libs-browser": "^2.2.1",
     "parcel": "^1.12.4"
   }

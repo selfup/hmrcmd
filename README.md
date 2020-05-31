@@ -72,13 +72,9 @@ Please fork the project and make a Pull Request (PR) to contribute!
 1. [go-serial](https://github.com/jacobsa/go-serial/serial)
 1. [packr](https://github.com/gobuffalo/packr)
 
-If on macOS: `go get golang.org/x/sys/unix` :thinking:
+Install Go Deps: `go mod download`
 
-Install go-serial: `go get github.com/jacobsa/go-serial/serial`
-
-Install packr: `go get -u github.com/gobuffalo/packr/...`
-
-Install JS deps: `npm i`
+Install JS deps: `npm install`
 
 ### Run the frontend
 

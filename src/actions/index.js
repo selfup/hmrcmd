@@ -29,8 +29,11 @@ export default {
 
     return axios
       .post(HMRCMD_SYNC_API, { Config: localStorage.radios })
-      .then(() => {
-        actions.success();
+      .then(({ data }) => {
+        if (data != null) {
+          actions.syncFromJSON(data);
+          actions.success();
+        }
       })
       .catch((err) => {
         actions.failure();
@@ -225,18 +228,16 @@ export default {
   ) => {
     posting();
 
-    setTimeout(
-      () =>
-        axios
-          .post(ICOM_CMD_API, { SerialPort, IcomCommand, BaudRate })
-          .then(() => {
-            success();
-          })
-          .catch((err) => {
-            failure();
-            throw new Error(err);
-          }),
-      10,
+    setTimeout(() =>
+      axios
+        .post(ICOM_CMD_API, { SerialPort, IcomCommand, BaudRate })
+        .then(() => {
+          success();
+        })
+        .catch((err) => {
+          failure();
+          throw new Error(err);
+        }),
     );
   },
 };

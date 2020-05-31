@@ -1,6 +1,9 @@
 body {
   font-family: 'Roboto Thin', 'Roboto', sans-serif;
   font-weight: 200;
+  background-color: turquoise;
+  width: 60%;
+  margin: auto;
 }
 
 button {
@@ -41,11 +44,13 @@ img.loading {
 
 .container {
   margin: auto;
-  vertical-align: top;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .topbar {
-  background-color: white;
+  background-color: lightcyan;
   text-align: center;
   margin-bottom: -2px;
 }
@@ -76,7 +81,7 @@ img.loading {
 .content {
   text-align: center;
   justify-content: center;
-  background-color: white;
+  background-color: azure;
   display: inline-flex;
 
   width: 100%;
@@ -142,14 +147,12 @@ img.loading {
 }
 
 .radio-cmd {
-  width: 100%;
+  width: 95%;
   display: inline-block;
   background-color: white;
-  border: solid 2px lightgrey;
-  border-radius: 15px !important;
+  border-top: solid 2px lightgrey;
   margin-top: 0.4em;
   margin-left: -1px;
-  border-radius: 25px;
 }
 
 .save-new-cmd-to-radio {
