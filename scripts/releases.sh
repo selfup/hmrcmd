@@ -32,4 +32,8 @@ mv ./hmrcmd ./releases/rpi-hmrcmd-$VERSION
 GOOS=windows GOARCH=386 packr build 
 mv ./hmrcmd.exe ./releases/hmrcmd-$VERSION.exe
 
+chmod +x releases/darwin-*
+chmod +x releases/rpi-*
+chmod +x releases/linux-*
+
 packr clean
