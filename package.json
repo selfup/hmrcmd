@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "mkdir -p dist && cp favicon.ico dist/ && parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --public-url ./ && mkdir -p dist && cp favicon.ico build/",
+    "build": "parcel build ./src/index.html --public-url ./ && cp favicon.ico dist/",
     "test": "echo '100% coverage..'"
   },
   "author": "Regis Boudinot",

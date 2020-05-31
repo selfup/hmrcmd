@@ -12,9 +12,11 @@ then
   rm -rf releases
 fi
 
-npm run build
-  
+NODE_ENV=production npm run build
+
 source .version
+
+go get -u github.com/gobuffalo/packr/packr
 
 mkdir releases
 
