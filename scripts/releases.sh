@@ -36,4 +36,11 @@ chmod +x releases/darwin-*
 chmod +x releases/rpi-*
 chmod +x releases/linux-*
 
+shasum -a 256 releases/darwin-hmrcmd-$VERSION > releases/darwin-hmrcmd-$VERSION.sha256
+shasum -a 256 releases/linux-hmrcmd-$VERSION > releases/linux-hmrcmd-$VERSION.sha256
+shasum -a 256 releases/rpi-hmrcmd-$VERSION > releases/rpi-hmrcmd-$VERSION.sha256
+shasum -a 256 releases/hmrcmd-$VERSION.exe > releases/hmrcmd-$VERSION.exe.sha256
+
 packr clean
+
+zip -r releases.zip releases/
