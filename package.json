@@ -2,7 +2,6 @@
   "name": "hmrcmd",
   "version": "1.0.1",
   "description": "frontend for hmrcmd",
-  "main": "index.js",
   "scripts": {
     "start": "mkdir -p dist && cp favicon.ico dist/ && parcel ./src/index.html",
     "build": "parcel build ./src/index.html --public-url ./ && cp favicon.ico dist/",
@@ -33,8 +32,8 @@
     "@babel/core": "^7.10.2",
     "@babel/plugin-transform-react-jsx": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
-    "cssnano": "^4.1.10",
+    "cssnano": "^5.1.14",
     "node-libs-browser": "^2.2.1",
-    "parcel": "^1.12.4"
+    "parcel": "^2.8.0"
   }
 }
